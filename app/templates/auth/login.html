@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Anguis</title>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="/static/css/themes.css">
+
+    <script>
+        // Load theme immediately to prevent flash
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            background: var(--md-background);
+        }
+
+        .login-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            height: 100vh;
+        }
+
+        /* Left Panel - Login Form */
+        .login-panel {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--md-surface);
+            position: relative;
+            padding: 40px;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .login-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--md-primary-container);
+            border-radius: var(--md-shape-corner-medium);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            color: var(--md-primary);
+        }
+
+        .login-title {
+            font: var(--md-typescale-headline-large);
+            margin: 0 0 8px 0;
+            font-weight: 500;
+            color: var(--md-on-surface);
+        }
+
+        .login-subtitle {
+            font: var(--md-typescale-body-large);
+            margin: 0;
+            color: var(--md-on-surface-variant);
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* Auth method selector - seamlessly integrated */
+        .auth-method-selector {
+            display: flex;
+            gap: 8px;
+            padding: 4px;
+            background: var(--md-surface-variant);
+            border-radius: var(--md-shape-corner-small);
+            margin-bottom: 8px;
+        }
+
+        .auth-method-btn {
+            flex: 1;
+            padding: 8px 16px;
+            border: none;
+            background: transparent;
+            color: var(--md-on-surface-variant);
+            font: var(--md-typescale-label-large);
+            border-radius: var(--md-shape-corner-small);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .auth-method-btn.active {
+            background: var(--md-surface);
+            color: var(--md-on-surface);
+            box-shadow: var(--md-elevation-1);
+        }
+
+        .auth-method-btn:hover:not(.active) {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        /* Domain field for Windows auth - hidden by default */
+        .domain-field {
+            display: none;
+        }
+
+        .domain-field.show {
+            display: block;
+        }
+
+        .login-button {
+            width: 100%;
+            margin-top: 8px;
+        }
+
+        .login-error {
+            background: var(--md-error-container);
+            color: var(--md-on-error-container);
+            padding: 12px 16px;
+            border-radius: var(--md-shape-corner-small);
+            font: var(--md-typescale-body-medium);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+        }
+
+        /* Right Panel - Splash Graphics */
+        .splash-panel {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .splash-background {
+            position: absolute;
+            inset: 0;
+            transition: background-color var(--md-motion-duration-medium2) var(--md-motion-easing-standard);
+        }
+
+        .splash-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .splash-image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity var(--md-motion-duration-medium4) var(--md-motion-easing-standard);
+        }
+
+        .splash-image.active {
+            opacity: 1;
+        }
+
+        .circuit-pattern {
+            position: absolute;
+            inset: 0;
+            opacity: 0.08;
+            background-image:
+                linear-gradient(90deg, var(--md-outline-variant) 1px, transparent 1px),
+                linear-gradient(var(--md-outline-variant) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+        }
+
+        /* Light theme styling */
+        [data-theme="light"] .splash-background {
+            background: linear-gradient(135deg, #fefcf8 0%, #f7f1e8 100%);
+        }
+
+        [data-theme="light"] .circuit-pattern {
+            background-image:
+                linear-gradient(90deg, #d4b896 1px, transparent 1px),
+                linear-gradient(#d4b896 1px, transparent 1px);
+            opacity: 0.12;
+        }
+
+        /* Dark theme styling */
+        [data-theme="dark"] .splash-background {
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+        }
+
+        [data-theme="dark"] .circuit-pattern {
+            background-image:
+                linear-gradient(90deg, #333333 1px, transparent 1px),
+                linear-gradient(#333333 1px, transparent 1px);
+            opacity: 0.15;
+        }
+
+        /* Cyber theme styling */
+        [data-theme="cyber"] .splash-background {
+            background: radial-gradient(ellipse at center, #001a1f 0%, #000510 100%);
+        }
+
+        [data-theme="cyber"] .circuit-pattern {
+            background-image:
+                linear-gradient(90deg, #00ccff 1px, transparent 1px),
+                linear-gradient(#00ccff 1px, transparent 1px);
+            opacity: 0.1;
+            animation: cyber-pulse-pattern 3s infinite;
+        }
+
+        @keyframes cyber-pulse-pattern {
+            0%, 100% { opacity: 0.08; }
+            50% { opacity: 0.15; }
+        }
+
+        /* Cyber theme enhancements for login panel */
+        [data-theme="cyber"] .login-icon {
+            box-shadow: 0 0 20px rgba(0, 204, 255, 0.3);
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 1024px) {
+            .login-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .splash-panel {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-layout">
+        <!-- Left Panel - Login Form -->
+        <div class="login-panel">
+            <!-- Theme Toggle Button -->
+            <button id="theme-toggle" class="md-icon-button theme-toggle" title="Toggle Theme">
+                <i data-lucide="moon" id="theme-icon"></i>
+            </button>
+
+            <div class="login-container">
+                <div class="login-header">
+                    <div class="login-icon">
+                        <i data-lucide="network" size="40"></i>
+                    </div>
+                    <h1 class="login-title">Anguis</h1>
+                    <p class="login-subtitle">Please sign in to continue</p>
+                </div>
+
+                <!-- Error messages from Flask flash -->
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="login-error" role="alert">
+                                <i data-lucide="alert-circle" size="16"></i>
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+                <form method="POST" class="login-form" id="login-form">
+                    <!-- Auth Method Selector - only show if multiple methods available -->
+                    {% if auth_info and auth_info.available_methods|length > 1 %}
+                    <div class="auth-method-selector">
+                        {% if 'local' in auth_info.available_methods %}
+                        <button type="button" class="auth-method-btn active" data-method="local">
+                            <i data-lucide="computer" size="16"></i>
+                            Local
+                        </button>
+                        {% endif %}
+                        {% if 'ldap' in auth_info.available_methods %}
+                        <button type="button" class="auth-method-btn" data-method="ldap">
+                            <i data-lucide="cloud" size="16"></i>
+                            LDAP
+                        </button>
+                        {% endif %}
+                    </div>
+                    <input type="hidden" name="auth_method" id="auth_method" value="{{ auth_info.default_method if auth_info else 'local' }}">
+                    {% endif %}
+
+                    <div class="md-textfield md-textfield-outlined">
+                        <input
+                            type="text"
+                            class="md-textfield-input"
+                            id="username"
+                            name="username"
+                            placeholder=" "
+                            required
+                            autocomplete="username"
+                        >
+                        <label for="username" class="md-textfield-label">Username</label>
+                    </div>
+
+                    <div class="md-textfield md-textfield-outlined">
+                        <input
+                            type="password"
+                            class="md-textfield-input"
+                            id="password"
+                            name="password"
+                            placeholder=" "
+                            required
+                            autocomplete="current-password"
+                        >
+                        <label for="password" class="md-textfield-label">Password</label>
+                    </div>
+
+                    <!-- Domain field for Windows authentication - hidden by default -->
+                    {% if auth_info and auth_info.system_info.system == 'Windows' %}
+                    <div class="md-textfield md-textfield-outlined domain-field" id="domain-field">
+                        <input
+                            type="text"
+                            class="md-textfield-input"
+                            id="domain"
+                            name="domain"
+                            placeholder=" "
+                        >
+                        <label for="domain" class="md-textfield-label">Domain (optional)</label>
+                    </div>
+                    {% endif %}
+
+                    <button type="submit" class="md-button md-button-filled login-button">
+                        <i data-lucide="log-in" size="18"></i>
+                        Sign In
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Right Panel - Splash Graphics (your original design) -->
+        <div class="splash-panel">
+            <div class="splash-background"></div>
+            <div class="circuit-pattern"></div>
+            <div class="splash-content">
+                <img
+                    id="splash-light"
+                    class="splash-image"
+                    src="{{ url_for('static', filename='images/login-light.png') }}"
+                    alt="Light Theme"
+                />
+                <img
+                    id="splash-dark"
+                    class="splash-image"
+                    src="{{ url_for('static', filename='images/login-dark.png') }}"
+                    alt="Dark Theme"
+                />
+                <img
+                    id="splash-cyber"
+                    class="splash-image"
+                    src="{{ url_for('static', filename='images/login-cyber.png') }}"
+                    alt="Cyber Theme"
+                />
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Theme handling (your original code)
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const html = document.documentElement;
+
+        const splashImages = {
+            light: document.getElementById('splash-light'),
+            dark: document.getElementById('splash-dark'),
+            cyber: document.getElementById('splash-cyber')
+        };
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+        updateTheme(savedTheme);
+
+        function updateTheme(theme) {
+            updateThemeIcon(theme);
+            updateSplashImage(theme);
+        }
+
+        function updateThemeIcon(theme) {
+            const iconName = theme === 'light' ? 'sun' : theme === 'dark' ? 'moon' : 'zap';
+            themeIcon.setAttribute('data-lucide', iconName);
+            lucide.createIcons();
+        }
+
+        function updateSplashImage(theme) {
+            Object.keys(splashImages).forEach(key => {
+                if (key === theme) {
+                    splashImages[key].classList.add('active');
+                } else {
+                    splashImages[key].classList.remove('active');
+                }
+            });
+        }
+
+        themeToggle.addEventListener('click', function() {
+            const currentTheme = html.getAttribute('data-theme');
+            const themes = ['light', 'dark', 'cyber'];
+            const currentIndex = themes.indexOf(currentTheme);
+            const nextTheme = themes[(currentIndex + 1) % themes.length];
+
+            html.setAttribute('data-theme', nextTheme);
+            localStorage.setItem('theme', nextTheme);
+            updateTheme(nextTheme);
+        });
+
+        // NEW: Auth method switching
+        const authMethodBtns = document.querySelectorAll('.auth-method-btn');
+        const authMethodInput = document.getElementById('auth_method');
+        const domainField = document.getElementById('domain-field');
+
+        authMethodBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Update active state
+                authMethodBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                // Update hidden input
+                const method = this.dataset.method;
+                if (authMethodInput) {
+                    authMethodInput.value = method;
+                }
+
+                // Show/hide domain field based on method
+                if (domainField) {
+                    if (method === 'local') {
+                        domainField.classList.add('show');
+                    } else {
+                        domainField.classList.remove('show');
+                    }
+                }
+            });
+        });
+
+        // Show domain field by default if local auth is selected
+        if (domainField && authMethodInput && authMethodInput.value === 'local') {
+            domainField.classList.add('show');
+        }
+
+        // Auto-focus username field (your original code)
+        document.addEventListener('DOMContentLoaded', function() {
+            const usernameField = document.getElementById('username');
+            if (usernameField) {
+                usernameField.focus();
+            }
+        });
+    </script>
+</body>
+</html>

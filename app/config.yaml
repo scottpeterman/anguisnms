@@ -1,0 +1,59 @@
+# config.yaml - Anguis Authentication Configuration
+#
+# Place this file in the root of your Anguis project directory
+# Environment variables will override these settings
+
+authentication:
+  # Default authentication method
+  # Options: "local" (Windows/Linux), "ldap" (Active Directory/LDAP)
+  default_method: "local"
+  use_ssh_fallback: true  # Enable SSH fallback on Linux
+  ssh_host: "localhost"
+
+  # Local OS authentication (Windows or Linux/Unix)
+  local:
+    enabled: true
+
+    # Windows-specific settings
+    domain_required: false  # Set true to require domain specification
+    use_computer_name_as_domain: true  # Use computer name if no domain provided
+
+  # LDAP/Active Directory configuration
+  ldap:
+    enabled: false  # Set to true to enable LDAP authentication
+    server: "ldap.company.com"
+    port: 389  # Use 636 for LDAPS
+    use_ssl: false  # Set true for LDAPS
+    base_dn: "dc=company,dc=com"
+
+    # User DN template - format username into LDAP DN
+    # Examples:
+    #   - OpenLDAP: "uid={username},ou=users,dc=company,dc=com"
+    #   - Active Directory: "{username}@company.com"
+    user_dn_template: "uid={username},ou=users,dc=company,dc=com"
+
+    # Group lookup configuration (optional)
+    search_groups: false  # Set true to retrieve group memberships
+    group_base_dn: "ou=groups,dc=company,dc=com"
+    group_filter: "(&(objectClass=group)(member={user_dn}))"
+
+    # Connection settings
+    timeout: 10
+    max_retries: 3
+
+# Flask application settings
+flask:
+  secret_key: null  # Override with FLASK_SECRET_KEY environment variable
+  session_timeout_minutes: 120  # 2 hours
+
+# Server configuration
+server:
+  host: "0.0.0.0"
+  port: 8086
+  debug: false  # Set true for development
+
+# Logging configuration
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/Anguis.log"  # Set to null to disable file logging

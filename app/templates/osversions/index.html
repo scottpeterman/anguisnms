@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% block title %}OS Version Compliance{% endblock %}
+
+{% block content %}
+<div style="max-width: 1400px; margin: 0 auto;">
+    <div style="margin-bottom: 32px;">
+        <h1 class="md-headline-large" style="display: flex; align-items: center; gap: 16px; margin: 0 0 8px 0;">
+            <i data-lucide="shield-check"></i>
+            OS Version Dashboard
+        </h1>
+        <p class="md-body-large" style="color: var(--md-on-surface-variant); margin: 0;">
+            Current OS version distribution across network devices
+        </p>
+    </div>
+
+    <!-- Summary Stats -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-bottom: 32px;">
+        <div class="md-card outlined" style="padding: 24px;">
+            <div style="display: flex; align-items: center; gap: 16px;">
+                <div style="width: 48px; height: 48px; background: var(--md-primary-container); color: var(--md-on-primary-container); border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                    <i data-lucide="server" size="24"></i>
+                </div>
+                <div>
+                    <div class="md-headline-medium" style="margin: 0;">{{ stats.total_devices }}</div>
+                    <div class="md-body-medium" style="color: var(--md-on-surface-variant);">Total Devices</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="md-card outlined" style="padding: 24px;">
+            <div style="display: flex; align-items: center; gap: 16px;">
+                <div style="width: 48px; height: 48px; background: var(--md-success-container); color: var(--md-on-success-container); border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                    <i data-lucide="check-circle" size="24"></i>
+                </div>
+                <div>
+                    <div class="md-headline-medium" style="margin: 0;">{{ stats.devices_with_version }}</div>
+                    <div class="md-body-medium" style="color: var(--md-on-surface-variant);">With Version Data</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="md-card outlined" style="padding: 24px;">
+            <div style="display: flex; align-items: center; gap: 16px;">
+                <div style="width: 48px; height: 48px; background: var(--md-tertiary-container); color: var(--md-on-tertiary-container); border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                    <i data-lucide="layers" size="24"></i>
+                </div>
+                <div>
+                    <div class="md-headline-medium" style="margin: 0;">{{ stats.unique_versions }}</div>
+                    <div class="md-body-medium" style="color: var(--md-on-surface-variant);">Unique Versions</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="md-card outlined" style="padding: 24px;">
+            <div style="display: flex; align-items: center; gap: 16px;">
+                <div style="width: 48px; height: 48px; background: var(--md-warning-container); color: var(--md-on-warning-container); border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                    <i data-lucide="alert-circle" size="24"></i>
+                </div>
+                <div>
+                    <div class="md-headline-medium" style="margin: 0;">{{ stats.coverage_pct }}%</div>
+                    <div class="md-body-medium" style="color: var(--md-on-surface-variant);">Version Coverage</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vendor Summary -->
+    <div class="md-card outlined" style="margin-bottom: 32px;">
+        <div style="padding: 24px; border-bottom: 1px solid var(--md-outline-variant);">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <h2 class="md-title-large" style="margin: 0; display: flex; align-items: center; gap: 12px;">
+                    <i data-lucide="factory" size="20"></i>
+                    Version Distribution by Vendor
+                </h2>
+<a href="{{ url_for('osversions.export_csv') }}" class="md-button md-button-outlined">                    <i data-lucide="download" size="16"></i>
+                    Export CSV
+                </a>
+            </div>
+        </div>
+        <div style="padding: 24px;">
+            <table class="md-table">
+                <thead>
+                    <tr>
+                        <th>Vendor</th>
+                        <th>Total Devices</th>
+                        <th>Unique Versions</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for vendor in vendor_summary %}
+                    <tr>
+                        <td><strong>{{ vendor.vendor or 'Unknown' }}</strong></td>
+                        <td>{{ vendor.total_devices }}</td>
+                        <td>{{ vendor.unique_versions }}</td>
+                        <td>
+                            <a href="{{ url_for('osversions.vendor_detail', vendor_name=vendor.vendor) }}" class="md-button md-button-text">
+                                <i data-lucide="eye" size="14"></i>
+                                View Details
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Version Details -->
+    <div class="md-card outlined">
+        <div style="padding: 24px; border-bottom: 1px solid var(--md-outline-variant);">
+            <h2 class="md-title-large" style="margin: 0; display: flex; align-items: center; gap: 12px;">
+                <i data-lucide="list" size="20"></i>
+                All OS Versions ({{ version_distribution|length }})
+            </h2>
+        </div>
+        <div style="padding: 24px;">
+            <table class="md-table">
+                <thead>
+                    <tr>
+                        <th>Vendor</th>
+                        <th>OS Version</th>
+                        <th>Device Count</th>
+                        <th>Sites</th>
+                        <th>Example Device</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for version in version_distribution %}
+                    <tr>
+                        <td>{{ version.vendor or 'Unknown' }}</td>
+                        <td><code>{{ version.os_version }}</code></td>
+                        <td><strong>{{ version.device_count }}</strong></td>
+                        <td>{{ version.sites.split(',')|length if version.sites else 0 }}</td>
+                        <td>
+                            <a href="{{ url_for('assets.device_detail', device_id=version.example_device_id) }}">
+                                {{ version.example_device_name }}
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    lucide.createIcons();
+</script>
+{% endblock %}
