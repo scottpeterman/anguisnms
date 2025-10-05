@@ -1,0 +1,202 @@
+erDiagram
+    %% --- Relationships ---
+    sites ||--o{ devices : contains
+    vendors ||--o{ devices : supplies
+    device_types ||--o{ devices : defines
+    device_roles ||--o{ devices : assigns
+
+    devices ||--o{ device_serials : has
+    devices ||--o{ stack_members : has
+    devices ||--o{ components : has
+    devices ||--o{ device_captures_current : latest
+    devices ||--o{ capture_snapshots : archives
+    devices ||--o{ capture_changes : diffs
+    devices ||--o{ fingerprint_extractions : fingerprints
+
+    capture_snapshots ||--o| capture_changes : previous_of
+    capture_snapshots ||--o| capture_changes : current_of
+
+    notes ||--o{ note_attachments : has
+    notes ||--o{ note_associations : links
+    devices ||--o{ note_associations : linked_by
+    sites ||--o{ note_associations : linked_by
+    notes ||--o{ note_associations : threaded
+
+    %% (Standalone ops log)
+    %% bulk_operations has no FKs to other tables in current schema
+
+    %% --- Tables ---
+    sites {
+      string code PK
+      string name
+      string description
+    }
+
+    vendors {
+      int id PK
+      string name
+      string short_name
+      string description
+    }
+
+    device_types {
+      int id PK
+      string name
+      string description
+      string netmiko_driver
+      string napalm_driver
+      string transport
+      int default_port
+      bool requires_enable
+      bool supports_config_session
+    }
+
+    device_roles {
+      int id PK
+      string name
+      string description
+      string expected_model_patterns
+      int port_count_min
+      int port_count_max
+      bool is_infrastructure
+    }
+
+    devices {
+      int id PK
+      string name
+      string normalized_name
+      string site_code
+      int vendor_id
+      int device_type_id
+      int role_id
+      string model
+      string os_version
+      string uptime
+      bool have_sn
+      string processor_id
+      string ipv4_address
+      string management_ip
+      bool is_stack
+      int stack_count
+      string timestamp
+      string source_file
+      string source_system
+    }
+
+    device_serials {
+      int id PK
+      int device_id
+      string serial
+      bool is_primary
+    }
+
+    stack_members {
+      int id PK
+      int device_id
+      string serial
+      int position
+      string model
+      bool is_master
+    }
+
+    components {
+      int id PK
+      int device_id
+      string name
+      string description
+      string serial
+      string position
+      bool have_sn
+      string type
+      string subtype
+      string extraction_source
+      float extraction_confidence
+    }
+
+    device_captures_current {
+      int id PK
+      int device_id
+      string capture_type
+      string file_path
+      int file_size
+      string capture_timestamp
+      bool extraction_success
+      string command_used
+    }
+
+    capture_snapshots {
+      int id PK
+      int device_id
+      string capture_type
+      datetime captured_at
+      string file_path
+      int file_size
+      string content
+      string content_hash
+    }
+
+    capture_changes {
+      int id PK
+      int device_id
+      string capture_type
+      datetime detected_at
+      int previous_snapshot_id
+      int current_snapshot_id
+      int lines_added
+      int lines_removed
+      string diff_path
+      string severity
+    }
+
+    fingerprint_extractions {
+      int id PK
+      int device_id
+      string extraction_timestamp
+      string fingerprint_file_path
+      string template_used
+      float template_score
+      bool extraction_success
+      int fields_extracted
+      int total_fields_available
+      int command_count
+      int extraction_duration_ms
+    }
+
+    notes {
+      int id PK
+      string title
+      string content
+      string note_type
+      datetime created_at
+      datetime updated_at
+      string created_by
+      string tags
+    }
+
+    note_attachments {
+      int id PK
+      int note_id
+      string filename
+      string content_type
+      blob data
+      int file_size
+      datetime created_at
+    }
+
+    note_associations {
+      int id PK
+      int note_id
+      string entity_type
+      string entity_id
+    }
+
+    bulk_operations {
+      int id PK
+      string operation_type
+      string filters
+      string operation_values
+      int affected_count
+      string executed_by
+      datetime executed_at
+      bool can_rollback
+    }
