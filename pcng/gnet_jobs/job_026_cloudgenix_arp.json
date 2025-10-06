@@ -1,0 +1,47 @@
+{
+  "version": "1.0",
+  "timestamp": "2025-09-16T09:34:38.064450",
+  "session_file": "sessions.yaml",
+  "vendor": {
+    "selected": "Cloudgenix",
+    "auto_paging": true
+  },
+  "credentials": {
+    "username": "el-speterman",
+    "credential_system": "Auto-detect from script",
+    "password_provided": false,
+    "enable_password_provided": false
+  },
+  "filters": {
+    "folder": "",
+    "name": "",
+    "vendor": "",
+    "device_type": ""
+  },
+  "commands": {
+    "template": "Cloudgenix Command Template",
+    "command_text": "inspect system arp all",
+    "output_directory": "arp"
+  },
+  "execution": {
+    "batch_script": "batch_spn_concurrent.py (Multi-process)",
+    "max_workers": 12,
+    "verbose": false,
+    "dry_run": false
+  },
+  "ui_state": {
+    "current_tab": 0
+  },
+  "legacy_info": {
+    "original_job_id": "026",
+    "original_query": "select * from devices where DeviceType  like \"%Cloud%\" and credsid is not Null  and ssh_reachable = 1",
+    "original_cmd_type": "ion_inspect_system_arp_all",
+    "vrf_support": false
+  },
+  "fingerprint_options": {
+    "fingerprinted_only": true,
+    "fingerprint_only": false,
+    "fingerprint": false,
+    "fingerprint_base": "./fingerprints"
+  }
+}

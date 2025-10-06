@@ -1,0 +1,7 @@
+# bgp-neighbor Capture Jobs (All Vendors)
+# Generated: 2025-09-29T18:11:57.107256
+# Jobs: 3
+
+job_212_cisco-ios_bgp-neighbor.json
+job_213_cisco-nxos_bgp-neighbor.json
+job_214_arista_bgp-neighbor.json

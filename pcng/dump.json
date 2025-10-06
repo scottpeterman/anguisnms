@@ -1,0 +1,194 @@
+{
+  "template_name": "cisco_ios_show_version",
+  "score": 30.0,
+  "headers": [
+    "SOFTWARE_IMAGE",
+    "VERSION",
+    "RELEASE",
+    "ROMMON",
+    "HOSTNAME",
+    "UPTIME",
+    "UPTIME_YEARS",
+    "UPTIME_WEEKS",
+    "UPTIME_DAYS",
+    "UPTIME_HOURS",
+    "UPTIME_MINUTES",
+    "RELOAD_REASON",
+    "RUNNING_IMAGE",
+    "HARDWARE",
+    "SERIAL",
+    "CONFIG_REGISTER",
+    "MAC_ADDRESS",
+    "RESTARTED"
+  ],
+  "records": [
+    {
+      "SOFTWARE_IMAGE": "CAT9K_IOSXE",
+      "VERSION": "17.9.6a",
+      "RELEASE": "fc1",
+      "ROMMON": "IOS-XE",
+      "HOSTNAME": "cal-cr-core-01",
+      "UPTIME": "21 weeks, 1 day, 2 hours, 40 minutes",
+      "UPTIME_YEARS": null,
+      "UPTIME_WEEKS": 21,
+      "UPTIME_DAYS": 1,
+      "UPTIME_HOURS": 2,
+      "UPTIME_MINUTES": 40,
+      "RELOAD_REASON": "Reload Command",
+      "RUNNING_IMAGE": "cat9k_iosxe.17.09.06a.SPA.bin",
+      "HARDWARE": [
+        "C9407R"
+      ],
+      "SERIAL": [
+        "FXS2516Q2GW"
+      ],
+      "CONFIG_REGISTER": null,
+      "MAC_ADDRESS": [
+        "6c:13:d5:bb:d2:40"
+      ],
+      "RESTARTED": "14:39:27 PDT Tue Apr 22 2025",
+      "UPTIME_TOTAL_MINUTES": 213280,
+      "STACK_MEMBERS": [
+        {
+          "index": 1,
+          "model": "C9407R",
+          "serial": "FXS2516Q2GW"
+        }
+      ]
+    }
+  ],
+  "raw_rows": [
+    {
+      "SOFTWARE_IMAGE": "CAT9K_IOSXE",
+      "VERSION": "17.9.6a",
+      "RELEASE": "fc1",
+      "ROMMON": "IOS-XE",
+      "HOSTNAME": "cal-cr-core-01",
+      "UPTIME": "21 weeks, 1 day, 2 hours, 40 minutes",
+      "UPTIME_YEARS": "",
+      "UPTIME_WEEKS": "21",
+      "UPTIME_DAYS": "1",
+      "UPTIME_HOURS": "2",
+      "UPTIME_MINUTES": "40",
+      "RELOAD_REASON": "Reload Command",
+      "RUNNING_IMAGE": "cat9k_iosxe.17.09.06a.SPA.bin",
+      "HARDWARE": "C9407R",
+      "SERIAL": "FXS2516Q2GW",
+      "CONFIG_REGISTER": "",
+      "MAC_ADDRESS": "6c:13:d5:bb:d2:40",
+      "RESTARTED": "14:39:27 PDT Tue Apr 22 2025"
+    }
+  ],
+  "filter_used": "cisco_ios_show_version",
+  "filter_rank": 1,
+  "field_analysis": {
+    "SOFTWARE_IMAGE": {
+      "value": "CAT9K_IOSXE",
+      "type": "str",
+      "non_empty": true,
+      "potential_mapping": "model"
+    },
+    "VERSION": {
+      "value": "17.9.6a",
+      "type": "str",
+      "non_empty": true,
+      "potential_mapping": "software_version"
+    },
+    "RELEASE": {
+      "value": "fc1",
+      "type": "str",
+      "non_empty": true,
+      "potential_mapping": "unknown"
+    },
+    "ROMMON": {
+      "value": "IOS-XE",
+      "type": "str",
+      "non_empty": true,
+      "potential_mapping": "unknown"
+    },
+    "HOSTNAME": {
+      "value": "cal-cr-core-01",
+      "type": "str",
+      "non_empty": true,
+      "potential_mapping": "hostname"
+    },
+    "UPTIME": {
+      "value": "21 weeks, 1 day, 2 hours, 40 minutes",
+      "type": "str",
+      "non_empty": true,
+      "potential_mapping": "uptime"
+    },
+    "UPTIME_YEARS": {
+      "value": "",
+      "type": "str",
+      "non_empty": false,
+      "potential_mapping": "uptime"
+    },
+    "UPTIME_WEEKS": {
+      "value": "21",
+      "type": "str",
+      "non_empty": true,
+      "potential_mapping": "uptime"
+    },
+    "UPTIME_DAYS": {
+      "value": "1",
+      "type": "str",
+      "non_empty": true,
+      "potential_mapping": "uptime"
+    },
+    "UPTIME_HOURS": {
+      "value": "2",
+      "type": "str",
+      "non_empty": true,
+      "potential_mapping": "uptime"
+    },
+    "UPTIME_MINUTES": {
+      "value": "40",
+      "type": "str",
+      "non_empty": true,
+      "potential_mapping": "uptime"
+    },
+    "RELOAD_REASON": {
+      "value": "Reload Command",
+      "type": "str",
+      "non_empty": true,
+      "potential_mapping": "unknown"
+    },
+    "RUNNING_IMAGE": {
+      "value": "cat9k_iosxe.17.09.06a.SPA.bin",
+      "type": "str",
+      "non_empty": true,
+      "potential_mapping": "unknown"
+    },
+    "HARDWARE": {
+      "value": "C9407R",
+      "type": "str",
+      "non_empty": true,
+      "potential_mapping": "model"
+    },
+    "SERIAL": {
+      "value": "FXS2516Q2GW",
+      "type": "str",
+      "non_empty": true,
+      "potential_mapping": "serial_number"
+    },
+    "CONFIG_REGISTER": {
+      "value": "",
+      "type": "str",
+      "non_empty": false,
+      "potential_mapping": "unknown"
+    },
+    "MAC_ADDRESS": {
+      "value": "6c:13:d5:bb:d2:40",
+      "type": "str",
+      "non_empty": true,
+      "potential_mapping": "mac_address"
+    },
+    "RESTARTED": {
+      "value": "14:39:27 PDT Tue Apr 22 2025",
+      "type": "str",
+      "non_empty": true,
+      "potential_mapping": "unknown"
+    }
+  }
+}

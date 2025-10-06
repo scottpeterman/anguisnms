@@ -1,0 +1,8 @@
+# version Capture Jobs (All Vendors)
+# Generated: 2025-09-29T18:11:57.125612
+# Jobs: 4
+
+job_304_cisco-ios_version.json
+job_305_cisco-nxos_version.json
+job_306_arista_version.json
+job_307_aruba_version.json

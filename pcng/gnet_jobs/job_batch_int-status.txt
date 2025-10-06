@@ -1,0 +1,8 @@
+# int-status Capture Jobs (All Vendors)
+# Generated: 2025-09-29T18:11:57.115339
+# Jobs: 4
+
+job_244_cisco-ios_int-status.json
+job_245_cisco-nxos_int-status.json
+job_246_arista_int-status.json
+job_247_aruba_int-status.json

@@ -1,10 +1,18 @@
-# Anguis
+# Anguis Network Management System
 
 **Python-based network device discovery, inventory management, and configuration tracking system**
 
-![Dashboard](screenshots/dashboard.png)
+---
 
-> ⚠️ **Alpha Release** - Functional but evolving. Released under GPLv3 prior to employment change. Expect rough edges and active development.
+## ⚠️ Alpha Release
+
+This is an early alpha release. While functional in production environments (managing 357 devices across 53 sites), expect rough edges and ongoing development. Released under GPLv3 to establish prior art before employment change.
+
+**Current Status:**
+- Core functionality complete and tested
+- 11 operational modules working
+- Documentation comprehensive but evolving
+- Active development and refinement ongoing
 
 ---
 
@@ -12,81 +20,165 @@
 
 Anguis automates network infrastructure management through integrated discovery, fingerprinting, and web-based asset tracking:
 
-- **Network Discovery** - CDP/LLDP topology mapping with parallel site processing
-- **Device Fingerprinting** - TextFSM-based identification with 100+ vendor templates
-- **Configuration Capture** - 31 operational data types across multi-vendor environments
-- **Component Tracking** - Hardware inventory extraction and serial number management
-- **Change Detection** - Configuration diff monitoring with unified viewer
-- **Web Dashboard** - 11 operational modules for real-time visibility
+1. **Discovers networks** - CDP/LLDP topology mapping with parallel site processing
+2. **Identifies devices** - TextFSM fingerprinting with 100+ vendor templates  
+3. **Captures configurations** - 31 operational data types across multi-vendor environments
+4. **Tracks inventory** - Hardware component extraction and serial number management
+5. **Monitors changes** - Configuration diff monitoring with unified viewer
+6. **Provides visibility** - 11 operational modules for real-time infrastructure visibility
 
 **Tested Scale:**
-- 455 devices across 53 sites
-- 126 switch stacks
-- 2,165 components tracked
+- 357 devices across 53 sites
+- 126 switch stacks managed
+- 1,684 components tracked
 - Multi-vendor: Cisco, Arista, HPE, F5, Juniper
-
----
-
-## Screenshots
-
-### Dashboard & Inventory
-![Dashboard Overview](screenshots/dashboard.png)
-*Real-time network overview with vendor distribution and component tracking*
-
-![Component Inventory](screenshots/components.png)
-*Hardware component tracking - 2,165 items across chassis, modules, PSUs, fans, and transceivers*
-
-### Search & Analysis
-![Configuration Search](screenshots/capture_search.png)
-*Full-text search across 31 capture types with regex support and coverage analysis*
-
-![OS Version Tracking](screenshots/os_versions.png)
-*Version compliance dashboard - 90.5% coverage across 412 devices*
-
-![OS Version Detail](screenshots/os_version_detail.png)
-*Drill-down view showing version distribution by vendor with device lists*
-
-![Coverage Analysis](screenshots/coverage.png)
-*Data collection gap identification with vendor-specific success rate matrices*
-
-### Operations & Documentation
-![Change Tracking](screenshots/change_tracking.png)
-*Configuration change detection with unified diff viewer and severity classification*
-
-![Notes System](screenshots/note_system.png)
-*Integrated documentation with device/site associations and full-text search*
-
-![Note Detail](screenshots/note_detail_w_image.png)
-*Rich note editor with image support and tag-based organization*
 
 ---
 
 ## Quick Start
 
+### Installation
+
 ```bash
-# Clone and setup
-git clone https://github.com/scottpeterman/anguis
-cd anguis
+# Clone repository
+git clone https://github.com/scottpeterman/anguisnms
+cd anguisnms
+
+# Create virtual environment
 python -m venv .venv
-source .venv/bin/activate
+source .venv/bin/activate  # Linux/Mac
+# .venv\Scripts\activate  # Windows
+
+# Install dependencies
 pip install -r requirements.txt
 
-# Initialize
+# Initialize databases
 python db_init.py
+python arp_cat_init_schema.py
+```
 
-# Discovery workflow
+### Basic Workflow
+
+```bash
+# 1. Discover network topology
+cd pcng
 python sc_run3.py --username admin --password secret --workers 10
-python enhance_all_maps.py --svg-no-endpoints --workers 10
-python batch_spn_concurrent.py sessions.yaml --fingerprint-only
-python batch_spn_concurrent.py sessions.yaml --fingerprinted-only
-python db_load_fingerprints.py --fingerprints-dir fingerprints
-python db_load_captures.py --captures-dir capture
 
-# Launch web interface
+# 2. Generate visual maps
+python sc_enhance_all_maps.py --svg-no-endpoints --workers 10
+
+# 3. Fingerprint devices
+python batch_spn_concurrent.py sessions.yaml --fingerprint-only
+
+# 4. Capture configurations  
+python batch_spn_concurrent.py sessions.yaml --fingerprinted-only
+
+# 5. Load into database
+cd ..
+python db_load_fingerprints.py --fingerprints-dir pcng/fingerprints
+python db_load_captures.py --captures-dir pcng/capture
+
+# 6. Launch web interface
 cd app
 python run.py
 # Access at http://localhost:8086
 ```
+
+---
+
+## Key Features
+
+### Network Discovery
+- Parallel site discovery (295 sites in 45-60 minutes)
+- CDP/LLDP topology mapping with site isolation
+- SVG, GraphML, and DrawIO export formats
+- Automatic vendor icon integration
+- yEd-compatible hierarchical layouts
+
+### Device Management
+- Multi-vendor support (Cisco IOS/NX-OS, Arista EOS, HPE, Juniper)
+- TextFSM-based fingerprinting with 100+ templates
+- 31 operational capture types (configs, inventory, ARP, routing, VLANs, etc.)
+- Parallel execution (8 concurrent processes)
+- Success rates: 85%+ fingerprinting, high capture rates
+
+### Component Inventory
+- Automatic extraction from show inventory
+- Tracks: Chassis, modules, PSUs, fans, transceivers
+- Serial number coverage: 89.6%
+- Multi-vendor templates (Cisco, Arista, HPE)
+- 100% success on Cisco/Arista platforms
+
+### Web Dashboard (11 Complete Modules)
+- **Dashboard** - Network overview and real-time metrics
+- **Devices** - Full CRUD operations with filtering and export
+- **Components** - Hardware inventory browser (1,684 items)
+- **OS Versions** - Compliance tracking (90.5% coverage)
+- **Capture Search** - Full-text configuration search
+- **Coverage Analysis** - Data collection gap identification
+- **Changes** - Configuration diff monitoring
+- **Network Maps** - Topology visualization
+- **ARP Search** - MAC address lookup (7,658 entries)
+- **SSH Terminal** - Web-based live device access
+- **Bulk Operations** - Safe batch modifications
+- **Notes** - Integrated documentation system
+
+### Advanced Capabilities
+- Multi-backend authentication (Windows/Linux/LDAP)
+- WebSocket-based SSH sessions
+- Preview-commit workflow for bulk changes
+- Component-level inventory tracking
+- Multi-vendor MAC normalization
+- Full-text search with FTS5
+- Rich text notes with image support
+- CSV export across all modules
+
+### Backup & Restore System
+
+Complete lifecycle management utilities for disaster recovery and deployment:
+
+**Features:**
+- **Full backup** - Databases + all artifacts in single compressed archive
+- **Metadata-only backup** - Fast snapshots excluding large capture files
+- **Complete restore** - From GitHub clone to production in minutes
+- **Environment reset** - Clean slate for testing or migration
+- **Safety backups** - Automatic pre-restore/pre-reset snapshots
+- **Integrity validation** - SHA256 checksums and record count verification
+
+**Real-world performance** (357-device environment):
+- Backup time: 15-30 seconds
+- Archive size: ~58 MB (17% compression ratio)
+- Restore time: 15-25 seconds
+- 10,229 capture files + 443 fingerprints + 262 maps
+
+**Usage:**
+```bash
+# Create full backup
+python backup.py --output ./backups
+
+# Metadata-only backup (faster, smaller)
+python backup.py --output ./backups --no-captures
+
+# Restore from backup
+python restore.py --archive ./backups/anguis_backup_*.tar.gz
+
+# Reset to clean state
+python reset.py
+```
+
+**Deployment workflow:**
+```bash
+# Fresh clone to working system
+git clone https://github.com/scottpeterman/anguisnms
+cd anguisnms
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+python db_init.py && python arp_cat_init_schema.py
+python restore.py --archive /path/to/backup.tar.gz --force
+cd app && python run.py
+```
+
+See [README_Maintenance.md](README_Maintenance.md) for complete documentation.
 
 ---
 
@@ -97,7 +189,7 @@ Network Devices → Discovery (CDP/LLDP)
                 ↓
          Topology JSON
                 ↓
-      Maps (SVG/GraphML/DrawIO)
+    Maps (SVG/GraphML/DrawIO)
                 ↓
    Device Fingerprinting (TextFSM)
                 ↓
@@ -109,76 +201,16 @@ Network Devices → Discovery (CDP/LLDP)
 ```
 
 **Pipeline Components:**
-
-1. **sc_run3.py** - Parallel network discovery with site isolation
-2. **enhance_all_maps.py** - Visual topology generation with vendor icons
-3. **batch_spn_concurrent.py** - Multi-process fingerprinting and capture
-4. **inventory_loader.py** - Component extraction from inventory captures
-5. **arp_cat_loader.py** - MAC address tracking with vendor normalization
-6. **Flask app** - Web-based management interface
-
----
-
-## Web Dashboard Modules
-
-**Operational (11 Complete):**
-- Dashboard - Network overview and real-time metrics
-- Devices - Full CRUD with filtering and export
-- Components - Hardware inventory browser (2,165 items)
-- OS Versions - Compliance tracking (90.5% coverage)
-- Capture Search - Full-text configuration search
-- Coverage Analysis - Data collection gap identification
-- Changes - Configuration diff monitoring
-- Network Maps - Topology visualization
-- ARP Search - MAC address lookup (7,658 entries)
-- SSH Terminal - Web-based live device access
-- Bulk Operations - Safe batch modifications
-- Notes - Integrated documentation system
-
-**Features:**
-- Multi-backend authentication (Windows/Linux/LDAP)
-- CSV export across all modules
-- WebSocket-based SSH sessions
-- Preview-commit workflow for bulk changes
-- Component-level inventory tracking
-- Multi-vendor MAC normalization
-- Full-text search with FTS5
-- Rich text notes with image support
+- `sc_run3.py` - Parallel network discovery with site isolation
+- `sc_enhance_all_maps.py` - Visual topology generation with vendor icons
+- `batch_spn_concurrent.py` - Multi-process fingerprinting and capture
+- `inventory_loader.py` - Component extraction from inventory captures
+- `arp_cat_loader.py` - MAC address tracking with vendor normalization
+- Flask app - Web-based management interface
 
 ---
 
-## Key Capabilities
-
-### Discovery & Mapping
-- Parallel site discovery (295 sites in 45-60 minutes)
-- CDP/LLDP topology mapping
-- SVG, GraphML, DrawIO export formats
-- Automatic vendor icon integration
-- yEd-compatible hierarchical layouts
-
-### Data Collection
-- TextFSM-based device fingerprinting
-- 31 capture types (configs, inventory, ARP, routing, VLANs, etc.)
-- Multi-vendor support (Cisco IOS/NX-OS, Arista EOS, HPE, Juniper)
-- Parallel execution (8 concurrent processes)
-- Success rates: 85%+ fingerprinting, 60-65% capture
-
-### Component Inventory
-- Automatic extraction from show inventory
-- Tracks: Chassis, modules, PSUs, fans, transceivers
-- Serial number coverage: 88%
-- Multi-vendor templates (Cisco, Arista, HPE)
-- 100% success on Cisco/Arista platforms
-
-### ARP Tracking
-- Multi-vendor MAC normalization (Cisco dot, HP dash, Arista colon)
-- Historical timeline view
-- 7,658 entries across 115 devices
-- VRF/context awareness (default VRF currently)
-
----
-
-## Performance Metrics
+## Performance
 
 **Real-World Timings:**
 - Discovery: 45-60 minutes (295 sites, 10 workers)
@@ -187,21 +219,33 @@ Network Devices → Discovery (CDP/LLDP)
 - Configuration Capture: 90-120 minutes (8 processes)
 - Component Extraction: <3 seconds per device
 - Dashboard Load: <500ms
-- Export Generation: <2s for 455 devices
+- Export Generation: <2s for 357 devices
 
 **Complete Cycle:** ~4 hours for full network refresh
+
+**Coverage Rates:**
+- Discovery: 95%+ topology mapping
+- Fingerprinting: 85%+ device identification  
+- OS Version Coverage: 90.5%
+- Component Serial Numbers: 89.6%
 
 ---
 
 ## Documentation
 
-Comprehensive documentation included:
-
-- **[Maps Pipeline](README_Maps_Pipeline.md)** - Discovery and topology generation
+### Core Guides
+- **[Maps Pipeline](README_Map_pipeline.md)** - Discovery and topology generation
 - **[Data Pipeline](README_Pipeline.md)** - Fingerprinting and configuration capture
 - **[Web Dashboard](README_Network_Mgmt_Flask.md)** - Flask application and modules
 - **[Component Inventory](README_Inventory_Components.md)** - Hardware tracking system
 - **[Authentication](README_Auth.md)** - Multi-backend auth (Windows/Linux/LDAP)
+- **[Backup & Restore](README_Maintenance.md)** - Lifecycle management utilities
+
+### Additional Documentation
+- **[Database Schema](README.DB.md)** - SQLite schema and design
+- **[ARP Tracking](README_arp_cat.md)** - MAC address management
+- **[Change Detection](README_Archive_change_detection.md)** - Configuration monitoring
+- **[Notes System](README_Notes.md)** - Integrated documentation
 
 ---
 
@@ -211,31 +255,36 @@ Comprehensive documentation included:
 
 **2024-2025:** [Secure Cartography](https://github.com/scottpeterman/secure_cartography) - Production-scale parallel discovery engine (295 sites in 45-60 minutes)
 
-**2025:** Anguis - Integrated platform combining discovery, fingerprinting, component tracking, and comprehensive web dashboard
+**2025:** Anguis - Integrated platform combining discovery, fingerprinting, component tracking, comprehensive web dashboard, and backup/restore utilities
 
 ---
 
 ## Requirements
 
+**Core Dependencies:**
 - Python 3.8+
 - Core: paramiko, pyyaml, networkx, textfsm
 - Web: flask, flask-socketio, python-socketio
 - Optional: secure_cartography, Pillow
-- Platform-specific: pywin32 (Windows), python-pam (Linux), ldap3 (LDAP)
+
+**Platform-Specific:**
+- pywin32 (Windows authentication)
+- python-pam (Linux authentication)  
+- ldap3 (LDAP authentication)
 
 See `requirements.txt` for complete dependencies.
 
 ---
 
-## Installation Notes
+## Configuration
 
 **Database Initialization:**
 ```bash
-python db_init.py              # Main assets database
-python arp_cat_init_schema.py  # ARP tracking database
+python db_init.py                # Main assets database
+python arp_cat_init_schema.py   # ARP tracking database
 ```
 
-**Configuration:**
+**Application Setup:**
 - Create `config.yaml` from `config.yaml.example`
 - Configure authentication backend (local/LDAP)
 - Set credential management for discovery/capture
@@ -250,7 +299,7 @@ python run.py
 
 ---
 
-## Alpha Status Notes
+## Alpha Status & Expectations
 
 This release establishes prior art before employment change. While functional in production environments, expect:
 
@@ -259,7 +308,7 @@ This release establishes prior art before employment change. While functional in
 - Enhanced error handling and logging
 - Performance optimization for large deployments
 
-Core functionality is stable and tested. The platform successfully manages 455 devices across 53 sites with multi-vendor support.
+Core functionality is stable and tested. The platform successfully manages 357 devices across 53 sites with multi-vendor support.
 
 ---
 

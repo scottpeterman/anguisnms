@@ -1,0 +1,8 @@
+# tacacs Capture Jobs (All Vendors)
+# Generated: 2025-09-29T18:11:57.124613
+# Jobs: 4
+
+job_300_cisco-ios_tacacs.json
+job_301_cisco-nxos_tacacs.json
+job_302_arista_tacacs.json
+job_303_aruba_tacacs.json

@@ -1,0 +1,28 @@
+# Aruba/HP Capture Jobs
+# Generated: 2025-09-29T18:11:57.104043
+# Jobs: 24
+
+job_203_aruba_arp.json
+job_207_aruba_authentication.json
+job_211_aruba_authorization.json
+job_226_aruba_cdp.json
+job_229_aruba_cdp-detail.json
+job_233_aruba_config.json
+job_237_aruba_configs.json
+job_241_aruba_console.json
+job_247_aruba_int-status.json
+job_251_aruba_interface-status.json
+job_255_aruba_inventory.json
+job_259_aruba_ip_ssh.json
+job_263_aruba_lldp.json
+job_267_aruba_lldp-detail.json
+job_271_aruba_mac.json
+job_275_aruba_ntp_status.json
+job_279_aruba_ospf-neighbor.json
+job_283_aruba_port-channel.json
+job_287_aruba_radius.json
+job_291_aruba_routes.json
+job_295_aruba_snmp_server.json
+job_299_aruba_syslog.json
+job_303_aruba_tacacs.json
+job_307_aruba_version.json

@@ -1,0 +1,120 @@
+{
+  "host": "10.42.42.2",
+  "port": 22,
+  "device_type": 4,
+  "detected_prompt": "ush-cr-core-a#",
+  "disable_paging_command": "terminal length 0",
+  "hostname": "ush-cr-core-a",
+  "model": "DCS-7050SX3-48YC8-F",
+  "version": "12.21",
+  "serial_number": "JMX2333A3A1",
+  "is_virtual_device": false,
+  "platform": null,
+  "uptime": null,
+  "additional_info": {
+    "textfsm_hw_version": "12.21",
+    "textfsm_sys_mac": "e478.76bd.d305",
+    "textfsm_image": "4.31.5M",
+    "textfsm_total_memory": "8099732",
+    "textfsm_free_memory": "5921108",
+    "netmiko_driver": "arista_eos",
+    "vendor": "Arista",
+    "display_name": "ush-cr-core-a",
+    "host": "10.42.42.2",
+    "port": "22"
+  },
+  "interfaces": {},
+  "ip_addresses": [],
+  "cpu_info": null,
+  "memory_info": null,
+  "storage_info": null,
+  "command_outputs": {
+    "show version": "show version\r\nArista DCS-7050SX3-48YC8-F\r\nHardware version: 12.21\r\nSerial number: JMX2333A3A1\r\nHardware MAC address: e478.76bd.d305\r\nSystem MAC address: e478.76bd.d305\r\n\r\nSoftware image version: 4.31.5M\r\nArchitecture: i686\r\nInternal build version: 4.31.5M-38783123.4315M\r\nInternal build ID: a514fb70-598b-4084-975c-4f5978421b10\r\nImage format version: 3.0\r\nImage optimization: Default\r\n\r\nUptime: 24 weeks, 3 days, 22 hours and 4 minutes\r\nTotal memory: 8099732 kB\r\nFree memory: 5921108 kB\r\n\r\nush-cr-core-a#",
+    "show version_textfsm": {
+      "template_name": "arista_eos_show_version",
+      "score": 30.0,
+      "headers": [
+        "MODEL",
+        "HW_VERSION",
+        "SERIAL_NUMBER",
+        "SYS_MAC",
+        "IMAGE",
+        "TOTAL_MEMORY",
+        "FREE_MEMORY"
+      ],
+      "records": [
+        {
+          "MODEL": "DCS-7050SX3-48YC8-F",
+          "HW_VERSION": "12.21",
+          "SERIAL_NUMBER": "JMX2333A3A1",
+          "SYS_MAC": "e478.76bd.d305",
+          "IMAGE": "4.31.5M",
+          "TOTAL_MEMORY": "8099732",
+          "FREE_MEMORY": "5921108",
+          "UPTIME_TOTAL_MINUTES": 0,
+          "STACK_MEMBERS": []
+        }
+      ],
+      "raw_rows": [
+        {
+          "MODEL": "DCS-7050SX3-48YC8-F",
+          "HW_VERSION": "12.21",
+          "SERIAL_NUMBER": "JMX2333A3A1",
+          "SYS_MAC": "e478.76bd.d305",
+          "IMAGE": "4.31.5M",
+          "TOTAL_MEMORY": "8099732",
+          "FREE_MEMORY": "5921108"
+        }
+      ],
+      "filter_used": "arista_eos_show_version",
+      "filter_rank": 1,
+      "field_analysis": {
+        "MODEL": {
+          "value": "DCS-7050SX3-48YC8-F",
+          "type": "str",
+          "non_empty": true,
+          "potential_mapping": "model"
+        },
+        "HW_VERSION": {
+          "value": "12.21",
+          "type": "str",
+          "non_empty": true,
+          "potential_mapping": "software_version"
+        },
+        "SERIAL_NUMBER": {
+          "value": "JMX2333A3A1",
+          "type": "str",
+          "non_empty": true,
+          "potential_mapping": "serial_number"
+        },
+        "SYS_MAC": {
+          "value": "e478.76bd.d305",
+          "type": "str",
+          "non_empty": true,
+          "potential_mapping": "mac_address"
+        },
+        "IMAGE": {
+          "value": "4.31.5M",
+          "type": "str",
+          "non_empty": true,
+          "potential_mapping": "possible_version"
+        },
+        "TOTAL_MEMORY": {
+          "value": "8099732",
+          "type": "str",
+          "non_empty": true,
+          "potential_mapping": "memory_info"
+        },
+        "FREE_MEMORY": {
+          "value": "5921108",
+          "type": "str",
+          "non_empty": true,
+          "potential_mapping": "memory_info"
+        }
+      }
+    },
+    "show system info": "show system info\r\n% Invalid input\r\nush-cr-core-a#"
+  },
+  "fingerprint_time": "2025-09-17T13:50:04.721989",
+  "success": true
+}

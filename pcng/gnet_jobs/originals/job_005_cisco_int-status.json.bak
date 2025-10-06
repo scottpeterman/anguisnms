@@ -1,0 +1,41 @@
+{
+  "version": "1.0",
+  "timestamp": "2025-09-16T09:34:38.040593",
+  "session_file": "sessions.yaml",
+  "vendor": {
+    "selected": "Cisco",
+    "auto_paging": true
+  },
+  "credentials": {
+    "username": "el-speterman",
+    "credential_system": "Auto-detect from script",
+    "password_provided": false,
+    "enable_password_provided": false
+  },
+  "filters": {
+    "folder": "",
+    "name": "",
+    "vendor": "*cisco*",
+    "device_type": ""
+  },
+  "commands": {
+    "template": "Cisco Command Template",
+    "command_text": "show interfaces description",
+    "output_directory": "int-status"
+  },
+  "execution": {
+    "batch_script": "batch_spn_concurrent.py (Multi-process)",
+    "max_workers": 12,
+    "verbose": false,
+    "dry_run": false
+  },
+  "ui_state": {
+    "current_tab": 0
+  },
+  "legacy_info": {
+    "original_job_id": "005",
+    "original_query": "select * from devices where DeviceType  like \"%Cisco IOS%\" and credsid is not Null and ssh_reachable = 1",
+    "original_cmd_type": "cisco_int_desc",
+    "vrf_support": false
+  }
+}

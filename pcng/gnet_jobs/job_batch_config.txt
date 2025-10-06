@@ -1,0 +1,8 @@
+# config Capture Jobs (All Vendors)
+# Generated: 2025-09-29T18:11:57.111221
+# Jobs: 4
+
+job_230_cisco-ios_config.json
+job_231_cisco-nxos_config.json
+job_232_arista_config.json
+job_233_aruba_config.json

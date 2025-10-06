@@ -1,0 +1,47 @@
+{
+  "version": "1.0",
+  "timestamp": "2025-09-16T09:34:38.084467",
+  "session_file": "sessions.yaml",
+  "vendor": {
+    "selected": "Aruba",
+    "auto_paging": true
+  },
+  "credentials": {
+    "username": "el-speterman",
+    "credential_system": "Auto-detect from script",
+    "password_provided": false,
+    "enable_password_provided": false
+  },
+  "filters": {
+    "folder": "",
+    "name": "",
+    "vendor": "*aruba*",
+    "device_type": ""
+  },
+  "commands": {
+    "template": "Aruba Command Template",
+    "command_text": "show snmp-server",
+    "output_directory": "snmp_server"
+  },
+  "execution": {
+    "batch_script": "batch_spn_concurrent.py (Multi-process)",
+    "max_workers": 12,
+    "verbose": false,
+    "dry_run": false
+  },
+  "ui_state": {
+    "current_tab": 0
+  },
+  "legacy_info": {
+    "original_job_id": "050",
+    "original_query": "select * from devices where DeviceType  like \"%Aruba SW-OS%\" and MgmtIP not like \"%unknown%\" and credsid is not Null and monitored = 1",
+    "original_cmd_type": "aruba_show_snmp_server",
+    "vrf_support": false
+  },
+  "fingerprint_options": {
+    "fingerprinted_only": true,
+    "fingerprint_only": false,
+    "fingerprint": false,
+    "fingerprint_base": "./fingerprints"
+  }
+}

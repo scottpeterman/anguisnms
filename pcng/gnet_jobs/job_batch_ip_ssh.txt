@@ -1,0 +1,8 @@
+# ip_ssh Capture Jobs (All Vendors)
+# Generated: 2025-09-29T18:11:57.117460
+# Jobs: 4
+
+job_256_cisco-ios_ip_ssh.json
+job_257_cisco-nxos_ip_ssh.json
+job_258_arista_ip_ssh.json
+job_259_aruba_ip_ssh.json

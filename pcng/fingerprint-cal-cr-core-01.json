@@ -1,0 +1,235 @@
+{
+  "host": "10.68.48.60",
+  "port": 22,
+  "device_type": 1,
+  "detected_prompt": "cal-cr-core-01#",
+  "disable_paging_command": "terminal length 0",
+  "hostname": "cal-cr-core-01",
+  "model": "C9407R",
+  "version": "17.9.6a",
+  "serial_number": "FXS2516Q2GW",
+  "is_virtual_device": false,
+  "platform": null,
+  "uptime": "21 weeks, 22 hours, 5 minutes",
+  "additional_info": {
+    "textfsm_software_image": "CAT9K_IOSXE",
+    "textfsm_release": "fc1",
+    "textfsm_rommon": "IOS-XE",
+    "textfsm_uptime_weeks": "21",
+    "textfsm_uptime_hours": "22",
+    "textfsm_uptime_minutes": "5",
+    "textfsm_reload_reason": "Reload Command",
+    "textfsm_running_image": "cat9k_iosxe.17.09.06a.SPA.bin",
+    "textfsm_mac_address": "6c:13:d5:bb:d2:40",
+    "textfsm_restarted": "14:39:27 PDT Tue Apr 22 2025",
+    "netmiko_driver": "cisco_ios",
+    "vendor": "Cisco",
+    "display_name": "cal-cr-core-01",
+    "host": "10.68.48.60",
+    "port": "22"
+  },
+  "interfaces": {},
+  "ip_addresses": [],
+  "cpu_info": null,
+  "memory_info": null,
+  "storage_info": null,
+  "command_outputs": {
+    "show version": "show version\r\nCisco IOS XE Software, Version 17.09.06a\r\nCisco IOS Software [Cupertino], Catalyst L3 Switch Software (CAT9K_IOSXE), Version 17.9.6a, RELEASE SOFTWARE (fc1)\r\nTechnical Support: http://www.cisco.com/techsupport\r\nCopyright (c) 1986-2024 by Cisco Systems, Inc.\r\nCompiled Thu 03-Oct-24 06:39 by mcpre\r\n\r\n\r\nCisco IOS-XE software, Copyright (c) 2005-2024 by cisco Systems, Inc.\r\nAll rights reserved.  Certain components of Cisco IOS-XE software are\r\nlicensed under the GNU General Public License (\"GPL\") Version 2.0.  The\r\nsoftware code licensed under GPL Version 2.0 is free software that comes\r\nwith ABSOLUTELY NO WARRANTY.  You can redistribute and/or modify such\r\nGPL code under the terms of GPL Version 2.0.  For more details, see the\r\ndocumentation or \"License Notice\" file accompanying the IOS-XE software,\r\nor the applicable URL provided on the flyer accompanying the IOS-XE\r\nsoftware.\r\n\r\n\r\nROM: IOS-XE ROMMON\r\nBOOTLDR: System Bootstrap, Version 17.8.1r[FC1], RELEASE SOFTWARE (P)\r\n\r\ncal-cr-core-01 uptime is 21 weeks, 22 hours, 5 minutes\r\nUptime for this control processor is 21 weeks, 22 hours, 6 minutes\r\nSystem returned to ROM by Reload Command at 14:34:11 PDT Tue Apr 22 2025\r\nSystem restarted at 14:39:27 PDT Tue Apr 22 2025\r\nSystem image file is \"bootflash:cat9k_iosxe.17.09.06a.SPA.bin\"\r\nLast reload reason: Reload Command\r\n\r\n\r\n\r\nThis product contains cryptographic features and is subject to United\r\nStates and local country laws governing import, export, transfer and\r\nuse. Delivery of Cisco cryptographic products does not imply\r\nthird-party authority to import, export, distribute or use encryption.\r\nImporters, exporters, distributors and users are responsible for\r\ncompliance with U.S. and local country laws. By using this product you\r\nagree to comply with applicable laws and regulations. If you are unable\r\nto comply with U.S. and local laws, return this product immediately.\r\n\r\nA summary of U.S. laws governing Cisco cryptographic products may be found at:\r\nhttp://www.cisco.com/wwl/export/crypto/tool/stqrg.html\r\n\r\nIf you require further assistance please contact us by sending email to\r\nexport@cisco.com.\r\n\r\n\r\nTechnology Package License Information: \r\n\r\n------------------------------------------------------------------------------\r\nTechnology-package                                     Technology-package\r\nCurrent                        Type                       Next reboot  \r\n------------------------------------------------------------------------------\r\nnetwork-advantage   \tSmart License                 \t network-advantage   \r\ndna-advantage       \tSubscription Smart License    \t dna-advantage                 \r\nAIR License Level: AIR DNA Advantage\r\nNext reload AIR license Level: AIR DNA Advantage\r\n\r\n\r\nSmart Licensing Status: Smart Licensing Using Policy\r\n\r\ncisco C9407R (X86) processor (revision V01) with 1834794K/6147K bytes of memory.\r\nProcessor board ID FXS2516Q2GW\r\n31 Virtual Ethernet interfaces\r\n48 Gigabit Ethernet interfaces\r\n56 Ten Gigabit Ethernet interfaces\r\n2 Forty Gigabit Ethernet interfaces\r\n32768K bytes of non-volatile configuration memory.\r\n15993648K bytes of physical memory.\r\n11161600K bytes of Bootflash at bootflash:.\r\n1638400K bytes of Crash Files at crashinfo:.\r\n234430023K bytes of SATA hard disk at disk0:.\r\n\r\nBase Ethernet MAC Address          : 6c:13:d5:bb:d2:40\r\nMotherboard Assembly Number        : 4AAE\r\nMotherboard Serial Number          : FXS251101GA\r\nModel Revision Number              : V02\r\nMotherboard Revision Number        : 2\r\nModel Number                       : C9407R              \r\nSystem Serial Number               : FXS2516Q2GW\r\n\r\ncal-cr-core-01#",
+    "show version_textfsm": {
+      "template_name": "cisco_ios_show_version",
+      "score": 30.0,
+      "headers": [
+        "SOFTWARE_IMAGE",
+        "VERSION",
+        "RELEASE",
+        "ROMMON",
+        "HOSTNAME",
+        "UPTIME",
+        "UPTIME_YEARS",
+        "UPTIME_WEEKS",
+        "UPTIME_DAYS",
+        "UPTIME_HOURS",
+        "UPTIME_MINUTES",
+        "RELOAD_REASON",
+        "RUNNING_IMAGE",
+        "HARDWARE",
+        "SERIAL",
+        "CONFIG_REGISTER",
+        "MAC_ADDRESS",
+        "RESTARTED"
+      ],
+      "records": [
+        {
+          "SOFTWARE_IMAGE": "CAT9K_IOSXE",
+          "VERSION": "17.9.6a",
+          "RELEASE": "fc1",
+          "ROMMON": "IOS-XE",
+          "HOSTNAME": "cal-cr-core-01",
+          "UPTIME": "21 weeks, 22 hours, 5 minutes",
+          "UPTIME_YEARS": null,
+          "UPTIME_WEEKS": 21,
+          "UPTIME_DAYS": null,
+          "UPTIME_HOURS": 22,
+          "UPTIME_MINUTES": 5,
+          "RELOAD_REASON": "Reload Command",
+          "RUNNING_IMAGE": "cat9k_iosxe.17.09.06a.SPA.bin",
+          "HARDWARE": [
+            "C9407R"
+          ],
+          "SERIAL": [
+            "FXS2516Q2GW"
+          ],
+          "CONFIG_REGISTER": null,
+          "MAC_ADDRESS": [
+            "6c:13:d5:bb:d2:40"
+          ],
+          "RESTARTED": "14:39:27 PDT Tue Apr 22 2025",
+          "UPTIME_TOTAL_MINUTES": 213005,
+          "STACK_MEMBERS": [
+            {
+              "index": 1,
+              "model": "C9407R",
+              "serial": "FXS2516Q2GW"
+            }
+          ]
+        }
+      ],
+      "raw_rows": [
+        {
+          "SOFTWARE_IMAGE": "CAT9K_IOSXE",
+          "VERSION": "17.9.6a",
+          "RELEASE": "fc1",
+          "ROMMON": "IOS-XE",
+          "HOSTNAME": "cal-cr-core-01",
+          "UPTIME": "21 weeks, 22 hours, 5 minutes",
+          "UPTIME_YEARS": "",
+          "UPTIME_WEEKS": "21",
+          "UPTIME_DAYS": "",
+          "UPTIME_HOURS": "22",
+          "UPTIME_MINUTES": "5",
+          "RELOAD_REASON": "Reload Command",
+          "RUNNING_IMAGE": "cat9k_iosxe.17.09.06a.SPA.bin",
+          "HARDWARE": "C9407R",
+          "SERIAL": "FXS2516Q2GW",
+          "CONFIG_REGISTER": "",
+          "MAC_ADDRESS": "6c:13:d5:bb:d2:40",
+          "RESTARTED": "14:39:27 PDT Tue Apr 22 2025"
+        }
+      ],
+      "filter_used": "cisco_ios_show_version",
+      "filter_rank": 1,
+      "field_analysis": {
+        "SOFTWARE_IMAGE": {
+          "value": "CAT9K_IOSXE",
+          "type": "str",
+          "non_empty": true,
+          "potential_mapping": "model"
+        },
+        "VERSION": {
+          "value": "17.9.6a",
+          "type": "str",
+          "non_empty": true,
+          "potential_mapping": "software_version"
+        },
+        "RELEASE": {
+          "value": "fc1",
+          "type": "str",
+          "non_empty": true,
+          "potential_mapping": "unknown"
+        },
+        "ROMMON": {
+          "value": "IOS-XE",
+          "type": "str",
+          "non_empty": true,
+          "potential_mapping": "unknown"
+        },
+        "HOSTNAME": {
+          "value": "cal-cr-core-01",
+          "type": "str",
+          "non_empty": true,
+          "potential_mapping": "hostname"
+        },
+        "UPTIME": {
+          "value": "21 weeks, 22 hours, 5 minutes",
+          "type": "str",
+          "non_empty": true,
+          "potential_mapping": "uptime"
+        },
+        "UPTIME_YEARS": {
+          "value": "",
+          "type": "str",
+          "non_empty": false,
+          "potential_mapping": "uptime"
+        },
+        "UPTIME_WEEKS": {
+          "value": "21",
+          "type": "str",
+          "non_empty": true,
+          "potential_mapping": "uptime"
+        },
+        "UPTIME_DAYS": {
+          "value": "",
+          "type": "str",
+          "non_empty": false,
+          "potential_mapping": "uptime"
+        },
+        "UPTIME_HOURS": {
+          "value": "22",
+          "type": "str",
+          "non_empty": true,
+          "potential_mapping": "uptime"
+        },
+        "UPTIME_MINUTES": {
+          "value": "5",
+          "type": "str",
+          "non_empty": true,
+          "potential_mapping": "uptime"
+        },
+        "RELOAD_REASON": {
+          "value": "Reload Command",
+          "type": "str",
+          "non_empty": true,
+          "potential_mapping": "unknown"
+        },
+        "RUNNING_IMAGE": {
+          "value": "cat9k_iosxe.17.09.06a.SPA.bin",
+          "type": "str",
+          "non_empty": true,
+          "potential_mapping": "unknown"
+        },
+        "HARDWARE": {
+          "value": "C9407R",
+          "type": "str",
+          "non_empty": true,
+          "potential_mapping": "model"
+        },
+        "SERIAL": {
+          "value": "FXS2516Q2GW",
+          "type": "str",
+          "non_empty": true,
+          "potential_mapping": "serial_number"
+        },
+        "CONFIG_REGISTER": {
+          "value": "",
+          "type": "str",
+          "non_empty": false,
+          "potential_mapping": "unknown"
+        },
+        "MAC_ADDRESS": {
+          "value": "6c:13:d5:bb:d2:40",
+          "type": "str",
+          "non_empty": true,
+          "potential_mapping": "mac_address"
+        },
+        "RESTARTED": {
+          "value": "14:39:27 PDT Tue Apr 22 2025",
+          "type": "str",
+          "non_empty": true,
+          "potential_mapping": "unknown"
+        }
+      }
+    }
+  },
+  "fingerprint_time": "2025-09-17T13:44:54.245456",
+  "success": true
+}

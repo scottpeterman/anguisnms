@@ -1,0 +1,121 @@
+# Converted Legacy Job Batch List
+# Generated on 2025-09-16T09:34:38.112911
+# Original SQL-based job definitions converted to JSON format
+
+# ARP jobs
+job_014_cisco_arp.json
+job_015_cisco_arp.json
+job_026_cloudgenix_arp.json
+job_031_paloalto_arp.json
+job_067_arista_arp.json
+
+# AUTHENTICATION jobs
+job_046_aruba_authentication.json
+
+# AUTHORIZATION jobs
+job_047_aruba_authorization.json
+
+# BGP-NEIGHBOR jobs
+job_004_cisco_bgp-neighbor.json
+job_063_arista_bgp-neighbor.json
+
+# BGP-SUMMARY jobs
+job_003_cisco_bgp-summary.json
+job_038_cisco_bgp-summary.json
+job_062_arista_bgp-summary.json
+
+# BGP-TABLE jobs
+job_033_cisco_bgp-table.json
+
+# BGP-TABLE-DETAIL jobs
+job_036_cisco_bgp-table-detail.json
+
+# CDP jobs
+job_021_aruba_cdp.json
+
+# CDP-DETAIL jobs
+job_007_cisco_cdp-detail.json
+job_008_cisco_cdp-detail.json
+job_020_aruba_cdp-detail.json
+
+# CONFIGS jobs
+job_001_cisco_configs.json
+job_002_cisco_configs.json
+job_022_aruba_configs.json
+job_061_arista_configs.json
+
+# CONSOLE jobs
+job_044_aruba_console.json
+
+# EIGRP-NEIGHBOR jobs
+job_041_cisco_eigrp-neighbor.json
+job_042_cisco_eigrp-neighbor.json
+
+# INT-STATUS jobs
+job_005_cisco_int-status.json
+job_006_cisco_int-status.json
+job_025_aruba_int-status.json
+job_064_arista_int-status.json
+
+# INTERFACE-STATUS jobs
+job_057_cisco_interface-status.json
+job_058_cisco_interface-status.json
+job_072_arista_interface-status.json
+
+# INVENTORY jobs
+job_032_cisco_inventory.json
+job_069_arista_inventory.json
+
+# IP_SSH jobs
+job_045_aruba_ip_ssh.json
+
+# LLDP jobs
+job_023_aruba_lldp.json
+
+# LLDP-DETAIL jobs
+job_009_cisco_lldp-detail.json
+job_024_aruba_lldp-detail.json
+job_065_arista_lldp-detail.json
+
+# MAC jobs
+job_016_aruba_mac.json
+job_017_cisco_mac.json
+job_018_cisco_mac.json
+job_068_arista_mac.json
+
+# NTP_STATUS jobs
+job_049_aruba_ntp_status.json
+
+# OSPF-NEIGHBOR jobs
+job_039_cisco_ospf-neighbor.json
+job_040_cisco_ospf-neighbor.json
+job_070_arista_ospf-neighbor.json
+
+# PORT-CHANNEL jobs
+job_059_cisco_port-channel.json
+job_060_cisco_port-channel.json
+job_073_arista_port-channel.json
+
+# ROUTES jobs
+job_055_cisco_routes.json
+job_056_cisco_routes.json
+job_071_arista_routes.json
+
+# SNMP_SERVER jobs
+job_050_aruba_snmp_server.json
+
+# SYSLOG jobs
+job_048_aruba_syslog.json
+
+# TACACS jobs
+job_051_aruba_tacacs.json
+job_052_cisco_tacacs.json
+job_053_cisco_tacacs.json
+job_054_cisco_tacacs.json
+
+# VERSION jobs
+job_012_cisco_version.json
+job_013_cisco_version.json
+job_043_aruba_version.json
+job_066_arista_version.json
+

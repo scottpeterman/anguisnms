@@ -1,0 +1,6 @@
+# eigrp-neighbor Capture Jobs (All Vendors)
+# Generated: 2025-09-29T18:11:57.114340
+# Jobs: 2
+
+job_242_cisco-ios_eigrp-neighbor.json
+job_243_cisco-nxos_eigrp-neighbor.json

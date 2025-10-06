@@ -1,0 +1,35 @@
+{
+  "version": "1.0",
+  "timestamp": "2025-09-15T20:44:55.436428",
+  "session_file": "sessions.yaml",
+  "vendor": {
+    "selected": "Cisco",
+    "auto_paging": true
+  },
+  "credentials": {
+    "username": "el-speterman",
+    "credential_system": "Auto-detect from script",
+    "password_provided": true,
+    "enable_password_provided": false
+  },
+  "filters": {
+    "folder": "",
+    "name": "usmd-",
+    "vendor": "*cisco*",
+    "device_type": ""
+  },
+  "commands": {
+    "template": "Cisco Running Config",
+    "command_text": "terminal length 0,show running-config",
+    "output_directory": "config"
+  },
+  "execution": {
+    "batch_script": "batch_spn_concurrent.py (Multi-process)",
+    "max_workers": 12,
+    "verbose": false,
+    "dry_run": false
+  },
+  "ui_state": {
+    "current_tab": 0
+  }
+}

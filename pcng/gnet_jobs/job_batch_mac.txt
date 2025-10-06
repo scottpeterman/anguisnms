@@ -1,0 +1,8 @@
+# mac Capture Jobs (All Vendors)
+# Generated: 2025-09-29T18:11:57.119463
+# Jobs: 4
+
+job_268_cisco-ios_mac.json
+job_269_cisco-nxos_mac.json
+job_270_arista_mac.json
+job_271_aruba_mac.json

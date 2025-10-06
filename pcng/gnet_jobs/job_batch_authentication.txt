@@ -1,0 +1,8 @@
+# authentication Capture Jobs (All Vendors)
+# Generated: 2025-09-29T18:11:57.106073
+# Jobs: 4
+
+job_204_cisco-ios_authentication.json
+job_205_cisco-nxos_authentication.json
+job_206_arista_authentication.json
+job_207_aruba_authentication.json

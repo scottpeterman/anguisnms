@@ -1,0 +1,26 @@
+{
+  "host": "10.42.42.2",
+  "port": 22,
+  "device_type": 4,
+  "detected_prompt": "ush-cr-core-a#",
+  "disable_paging_command": "terminal length 0",
+  "hostname": "ush-cr-core-a",
+  "model": "DCS-7050SX3-48YC8-F",
+  "version": null,
+  "serial_number": "JMX2333A3A1",
+  "is_virtual_device": false,
+  "platform": null,
+  "uptime": null,
+  "additional_info": {},
+  "interfaces": {},
+  "ip_addresses": [],
+  "cpu_info": null,
+  "memory_info": null,
+  "storage_info": null,
+  "command_outputs": {
+    "show version": "show version\r\n\u001b[?1h\u001b=\rArista DCS-7050SX3-48YC8-F\r\nHardware version: 12.21\r\nSerial number: JMX2333A3A1\r\nHardware MAC address: e478.76bd.d305\r\nSystem MAC address: e478.76bd.d305\r\n\r\nSoftware image version: 4.31.5M\r\nArchitecture: i686\r\nInternal build version: 4.31.5M-38783123.4315M\r\nInternal build ID: a514fb70-598b-4084-975c-4f5978421b10\r\nImage format version: 3.0\r\nImage optimization: Default\r\n\r\nUptime: 24 weeks, 3 days, 17 hours and 5 minutes\r\nTotal memory: 8099732 kB\r\nFree memory: 5911732 kB\r\n\r\n\r\u001b[K\u001b[?1l\u001b>ush-cr-core-a#",
+    "show system info": "show system info\r\n% Invalid input\r\nush-cr-core-a#"
+  },
+  "fingerprint_time": "2025-09-17T08:51:19.370738",
+  "success": true
+}

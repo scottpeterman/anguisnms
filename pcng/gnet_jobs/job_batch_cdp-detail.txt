@@ -1,0 +1,7 @@
+# cdp-detail Capture Jobs (All Vendors)
+# Generated: 2025-09-29T18:11:57.111221
+# Jobs: 3
+
+job_227_cisco-ios_cdp-detail.json
+job_228_cisco-nxos_cdp-detail.json
+job_229_aruba_cdp-detail.json

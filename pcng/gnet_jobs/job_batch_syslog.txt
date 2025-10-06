@@ -1,0 +1,8 @@
+# syslog Capture Jobs (All Vendors)
+# Generated: 2025-09-29T18:11:57.124613
+# Jobs: 4
+
+job_296_cisco-ios_syslog.json
+job_297_cisco-nxos_syslog.json
+job_298_arista_syslog.json
+job_299_aruba_syslog.json

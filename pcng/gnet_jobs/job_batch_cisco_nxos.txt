@@ -1,0 +1,33 @@
+# Cisco NX-OS Capture Jobs
+# Generated: 2025-09-29T18:11:57.103044
+# Jobs: 29
+
+job_201_cisco-nxos_arp.json
+job_205_cisco-nxos_authentication.json
+job_209_cisco-nxos_authorization.json
+job_213_cisco-nxos_bgp-neighbor.json
+job_216_cisco-nxos_bgp-summary.json
+job_219_cisco-nxos_bgp-table.json
+job_222_cisco-nxos_bgp-table-detail.json
+job_225_cisco-nxos_cdp.json
+job_228_cisco-nxos_cdp-detail.json
+job_231_cisco-nxos_config.json
+job_235_cisco-nxos_configs.json
+job_239_cisco-nxos_console.json
+job_243_cisco-nxos_eigrp-neighbor.json
+job_245_cisco-nxos_int-status.json
+job_249_cisco-nxos_interface-status.json
+job_253_cisco-nxos_inventory.json
+job_257_cisco-nxos_ip_ssh.json
+job_261_cisco-nxos_lldp.json
+job_265_cisco-nxos_lldp-detail.json
+job_269_cisco-nxos_mac.json
+job_273_cisco-nxos_ntp_status.json
+job_277_cisco-nxos_ospf-neighbor.json
+job_281_cisco-nxos_port-channel.json
+job_285_cisco-nxos_radius.json
+job_289_cisco-nxos_routes.json
+job_293_cisco-nxos_snmp_server.json
+job_297_cisco-nxos_syslog.json
+job_301_cisco-nxos_tacacs.json
+job_305_cisco-nxos_version.json

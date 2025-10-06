@@ -1,0 +1,8 @@
+# arp Capture Jobs (All Vendors)
+# Generated: 2025-09-29T18:11:57.105058
+# Jobs: 4
+
+job_200_cisco-ios_arp.json
+job_201_cisco-nxos_arp.json
+job_202_arista_arp.json
+job_203_aruba_arp.json

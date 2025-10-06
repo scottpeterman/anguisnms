@@ -1,0 +1,8 @@
+# console Capture Jobs (All Vendors)
+# Generated: 2025-09-29T18:11:57.113343
+# Jobs: 4
+
+job_238_cisco-ios_console.json
+job_239_cisco-nxos_console.json
+job_240_arista_console.json
+job_241_aruba_console.json
